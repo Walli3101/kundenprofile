@@ -498,7 +498,7 @@
     <div class="q-block"><span class="q-num">Bonus 03</span><span class="q-text">Wofür willst du bekannt sein?</span><textarea id="q9_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary purple" onclick="submitForm()" id="submitBtn">Absenden →</button></div>
     <div class="sending-msg" id="sendingMsg"></div>
-    <div class="error-msg" id="errorMsg">Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt: walligrasse@gmail.com</div>
+    <div class="error-msg" id="errorMsg">Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b5c4a4747424c594a58584e6b4c464a424705484446">[email&#160;protected]</a></div>
   </div>
 
   <!-- DONE -->
@@ -515,7 +515,7 @@
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const qfAnswers = {};
 let currentStep = -1;
 const totalSteps = 10;
@@ -756,19 +756,19 @@ Wofür bekannt sein: ${val("q9_3")}
 `.trim();
 
   // Formspree submission
-  // WICHTIG: Ersetze YOUR_FORM_ID mit deiner echten Formspree Form-ID
+  // WICHTIG: Ersetze mwvrjgev mit deiner echten Formspree Form-ID
   // Kostenlos registrieren auf formspree.io → neues Formular erstellen → ID kopieren
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvrjgev";
+
+  const formData = new FormData();
+  formData.append("_subject", "Neues Kundenprofil: " + name);
+  formData.append("name", name);
+  formData.append("message", message);
 
   fetch(FORMSPREE_ENDPOINT, {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    body: JSON.stringify({
-      _subject: "Neues Kundenprofil: " + name,
-      _replyto: "walligrasse@gmail.com",
-      name: name,
-      message: message
-    })
+    headers: { "Accept": "application/json" },
+    body: formData
   })
   .then(res => {
     if (res.ok) {
@@ -781,12 +781,3 @@ Wofür bekannt sein: ${val("q9_3")}
     }
   })
   .catch(() => {
-    btn.disabled = false;
-    btn.textContent = "Erneut versuchen →";
-    document.getElementById("sendingMsg").textContent = "";
-    document.getElementById("errorMsg").style.display = "block";
-  });
-}
-</script>
-</body>
-</html>
