@@ -362,7 +362,7 @@
       <label class="field-label" for="clientName">Dein Vorname</label>
       <input type="text" id="clientName" placeholder="z.B. Maria" />
     </div>
-    <button class="btn-primary purple" style="width:100%;padding:15px" onclick="startForm()">Fragebogen starten →</button>
+    <button class="btn-primary purple" style="width:100%;padding:15px" id="startBtn">Fragebogen starten →</button>
   </div>
 
   <!-- STEP 0: Identität -->
@@ -375,7 +375,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was sind 3 Dinge, die dich anders machen als andere in deiner Nische?</span><textarea id="q0_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Wenn jemand dich beschreiben müsste: Welche 3 Wörter wären es?</span><textarea id="q0_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Welche Version von dir zeigst du gerade – und welche hältst du zurück?</span><textarea id="q0_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><div></div><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><div></div><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 1: Stärken -->
@@ -388,7 +388,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Probleme kannst du für andere schnell lösen?</span><textarea id="q1_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">In welchen Momenten fühlst du dich richtig in deiner Kraft?</span><textarea id="q1_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was würdest du auch tun, wenn du kein Geld dafür bekommst?</span><textarea id="q1_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 2: Blockaden -->
@@ -401,7 +401,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was hält dich aktuell davon ab, sichtbarer zu werden?</span><textarea id="q2_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Was brauchst du, damit du dich sicher genug fühlst, sichtbar zu werden?</span><textarea id="q2_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Welche Gedanken kommen, wenn du posten willst?</span><textarea id="q2_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 3: Zukunft -->
@@ -414,7 +414,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Wie viel Geld verdienst du – und womit genau?</span><textarea id="q3_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Freiheit hast du (Zeit, Ort, Familie)?</span><textarea id="q3_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was muss passieren, damit du sagst: „Ich hab's geschafft"?</span><textarea id="q3_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 4: Angebot -->
@@ -427,7 +427,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Transformation kannst du anderen bieten?</span><textarea id="q4_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Themen könntest du 10 Stunden am Stück erklären?</span><textarea id="q4_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Wo hast du bereits Ergebnisse erzielt – für dich oder andere?</span><textarea id="q4_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 5: Content -->
@@ -440,7 +440,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Accounts inspirieren dich – und warum?</span><textarea id="q5_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Inhalte nerven dich komplett?</span><textarea id="q5_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was würdest du gerne sagen, traust dich aber nicht?</span><textarea id="q5_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 6: Trigger -->
@@ -453,7 +453,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was wird komplett falsch gemacht?</span><textarea id="q6_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Wahrheit traut sich keiner auszusprechen?</span><textarea id="q6_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Wo denkst du: „Das kann doch nicht sein…"?</span><textarea id="q6_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 7: Zielgruppe -->
@@ -466,7 +466,7 @@
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was sind ihre größten Probleme?</span><textarea id="q7_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Was wünscht sie sich insgeheim?</span><textarea id="q7_4" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Warum vertraut sie ausgerechnet dir?</span><textarea id="q7_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 8: Vergangenheit -->
@@ -478,7 +478,7 @@
     <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welcher Tiefpunkt hat dich am meisten geprägt?</span><textarea id="q8_2" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Wann hast du zuletzt etwas Teures gekauft – was hat den Ausschlag gegeben?</span><textarea id="q8_3" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Wem folgst du online – und warum vertraust du dieser Person?</span><textarea id="q8_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary" onclick="nextStep()">Weiter →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
   </div>
 
   <!-- STEP 9: Quickfire + Bonus -->
@@ -487,16 +487,16 @@
     <h2 class="section-heading">Quickfire & Bonus</h2>
     <p class="section-sub">Spontan, ungefiltert. Tippe auf das, was als erstes kommt.</p>
     <div class="qf-grid">
-      <div class="qf-pair"><button class="qf-btn" data-pair="0" data-val="Introvertiert" onclick="selectQF(this)">Introvertiert</button><div class="qf-sep"></div><button class="qf-btn" data-pair="0" data-val="Extrovertiert" onclick="selectQF(this)">Extrovertiert</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="1" data-val="Sicherheit" onclick="selectQF(this)">Sicherheit</button><div class="qf-sep"></div><button class="qf-btn" data-pair="1" data-val="Risiko" onclick="selectQF(this)">Risiko</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="2" data-val="Struktur" onclick="selectQF(this)">Struktur</button><div class="qf-sep"></div><button class="qf-btn" data-pair="2" data-val="Chaos" onclick="selectQF(this)">Chaos</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="3" data-val="Perfektion" onclick="selectQF(this)">Perfektion</button><div class="qf-sep"></div><button class="qf-btn" data-pair="3" data-val="Geschwindigkeit" onclick="selectQF(this)">Geschwindigkeit</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="4" data-val="Denken" onclick="selectQF(this)">Denken</button><div class="qf-sep"></div><button class="qf-btn" data-pair="4" data-val="Machen" onclick="selectQF(this)">Machen</button></div>
+      <div class="qf-pair"><button class="qf-btn" data-pair="0" data-val="Introvertiert" >Introvertiert</button><div class="qf-sep"></div><button class="qf-btn" data-pair="0" data-val="Extrovertiert" >Extrovertiert</button></div>
+      <div class="qf-pair"><button class="qf-btn" data-pair="1" data-val="Sicherheit" >Sicherheit</button><div class="qf-sep"></div><button class="qf-btn" data-pair="1" data-val="Risiko" >Risiko</button></div>
+      <div class="qf-pair"><button class="qf-btn" data-pair="2" data-val="Struktur" >Struktur</button><div class="qf-sep"></div><button class="qf-btn" data-pair="2" data-val="Chaos" >Chaos</button></div>
+      <div class="qf-pair"><button class="qf-btn" data-pair="3" data-val="Perfektion" >Perfektion</button><div class="qf-sep"></div><button class="qf-btn" data-pair="3" data-val="Geschwindigkeit" >Geschwindigkeit</button></div>
+      <div class="qf-pair"><button class="qf-btn" data-pair="4" data-val="Denken" >Denken</button><div class="qf-sep"></div><button class="qf-btn" data-pair="4" data-val="Machen" >Machen</button></div>
     </div>
     <div class="q-block"><span class="q-num">Bonus 01</span><span class="q-text">Wenn dein Leben ein Film wäre – wie würde er heißen?</span><textarea id="q9_1" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Bonus 02</span><span class="q-text">Was wäre deine Message an die Welt?</span><textarea id="q9_2" placeholder="Deine Antwort..."></textarea></div>
     <div class="q-block"><span class="q-num">Bonus 03</span><span class="q-text">Wofür willst du bekannt sein?</span><textarea id="q9_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-back" onclick="prevStep()">← Zurück</button><button class="btn-primary purple" onclick="submitForm()" id="submitBtn">Absenden →</button></div>
+    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-primary purple" id="submitBtn">Absenden →</button></div>
     <div class="sending-msg" id="sendingMsg"></div>
     <div class="error-msg" id="errorMsg">Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt: walligrasse@gmail.com</div>
   </div>
