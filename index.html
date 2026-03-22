@@ -6,548 +6,233 @@
 <title>Kundenprofil – Walli Grasse Social Media</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #F7F5F0;
-    --surface: #FFFFFF;
-    --accent: #1A1A1A;
-    --accent2: #8B5CF6;
-    --muted: #6B6B6B;
-    --border: #E5E2DA;
-    --input-bg: #FAFAF8;
-    --serif: 'DM Serif Display', Georgia, serif;
-    --sans: 'DM Sans', system-ui, sans-serif;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    font-family: var(--sans);
-    color: var(--accent);
-    min-height: 100vh;
-  }
-
-  .page-wrap {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-  }
-
-  /* Header */
-  .site-header {
-    padding: 40px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 48px;
-  }
-  .logo {
-    font-family: var(--serif);
-    font-size: 20px;
-    color: var(--accent);
-    letter-spacing: -0.3px;
-  }
-  .logo span { color: var(--accent2); }
-  .step-indicator {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  /* Progress */
-  .progress-track {
-    height: 2px;
-    background: var(--border);
-    border-radius: 2px;
-    margin-bottom: 56px;
-    position: relative;
-  }
-  .progress-fill {
-    height: 2px;
-    background: var(--accent2);
-    border-radius: 2px;
-    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
-    width: 0%;
-  }
-
-  /* Intro */
-  .intro-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 16px;
-  }
-  .intro-heading {
-    font-family: var(--serif);
-    font-size: clamp(32px, 5vw, 48px);
-    line-height: 1.15;
-    letter-spacing: -0.5px;
-    color: var(--accent);
-    margin-bottom: 20px;
-  }
-  .intro-heading em { font-style: italic; color: var(--accent2); }
-  .intro-body {
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--muted);
-    margin-bottom: 32px;
-    font-weight: 300;
-  }
-  .meta-chips {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 40px;
-  }
-  .chip {
-    padding: 5px 14px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 400;
-  }
-
-  /* Name field on intro */
-  .name-field-wrap {
-    margin-bottom: 28px;
-  }
-  .field-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  input[type=text], input[type=email] {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--input-bg);
-    font-family: var(--sans);
-    font-size: 16px;
-    color: var(--accent);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  input[type=text]:focus, input[type=email]:focus {
-    border-color: var(--accent2);
-  }
-
-  /* Section steps */
-  .step { display: none; }
-  .step.active { display: block; }
-
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 10px;
-  }
-  .section-heading {
-    font-family: var(--serif);
-    font-size: 28px;
-    letter-spacing: -0.3px;
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-  .section-sub {
-    font-size: 15px;
-    color: var(--muted);
-    margin-bottom: 36px;
-    font-weight: 300;
-    line-height: 1.6;
-  }
-
-  /* Questions */
-  .q-block {
-    margin-bottom: 28px;
-  }
-  .q-num {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin-bottom: 6px;
-    display: block;
-  }
-  .q-text {
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--accent);
-    line-height: 1.5;
-    margin-bottom: 10px;
-    display: block;
-  }
-  textarea {
-    width: 100%;
-    min-height: 90px;
-    padding: 14px 18px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--input-bg);
-    font-family: var(--sans);
-    font-size: 15px;
-    color: var(--accent);
-    resize: vertical;
-    outline: none;
-    transition: border-color 0.2s;
-    line-height: 1.6;
-    font-weight: 300;
-  }
-  textarea:focus { border-color: var(--accent2); }
-  textarea::placeholder { color: #BCBAB4; }
-
-  /* Quickfire */
-  .qf-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 36px;
-  }
-  .qf-pair {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-  }
-  .qf-btn {
-    flex: 1;
-    padding: 12px 8px;
-    background: var(--input-bg);
-    border: none;
-    font-family: var(--sans);
-    font-size: 13px;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
-  }
-  .qf-btn:hover { background: #F0EEE8; }
-  .qf-btn.sel {
-    background: var(--accent2);
-    color: #fff;
-    font-weight: 500;
-  }
-  .qf-sep {
-    width: 1px;
-    background: var(--border);
-    flex-shrink: 0;
-  }
-
-  /* Nav buttons */
-  .nav-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 40px;
-    padding-top: 28px;
-    border-top: 1px solid var(--border);
-  }
-  .btn-back {
-    padding: 12px 20px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: transparent;
-    font-family: var(--sans);
-    font-size: 14px;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .btn-back:hover { background: var(--surface); }
-  .btn-primary {
-    padding: 13px 28px;
-    border: none;
-    border-radius: 10px;
-    background: var(--accent);
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 500;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.15s;
-    letter-spacing: 0.01em;
-  }
-  .btn-primary:hover { background: #333; }
-  .btn-primary.purple { background: var(--accent2); }
-  .btn-primary.purple:hover { background: #7C3AED; }
-  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-
-  /* Done screen */
-  .done-wrap { text-align: center; padding: 24px 0; }
-  .done-icon {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: #F3F0FF;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px;
-  }
-  .done-title {
-    font-family: var(--serif);
-    font-size: 30px;
-    margin-bottom: 12px;
-    letter-spacing: -0.3px;
-  }
-  .done-sub {
-    font-size: 15px;
-    color: var(--muted);
-    line-height: 1.6;
-    font-weight: 300;
-    max-width: 380px;
-    margin: 0 auto;
-  }
-  .sending-msg {
-    font-size: 14px;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 16px;
-    min-height: 20px;
-  }
-  .error-msg {
-    font-size: 14px;
-    color: #DC2626;
-    text-align: center;
-    margin-top: 12px;
-    display: none;
-  }
-
-  /* Divider between questions */
-  .q-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 0 28px;
-    opacity: 0.5;
-  }
-
-  @media (max-width: 480px) {
-    .qf-grid { grid-template-columns: 1fr; }
-    .intro-heading { font-size: 28px; }
-  }
+:root{--bg:#F7F5F0;--surface:#fff;--accent:#1A1A1A;--purple:#8B5CF6;--muted:#6B6B6B;--border:#E5E2DA;--input:#FAFAF8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--accent);min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px 80px}
+.header{padding:40px 0 0;display:flex;align-items:center;justify-content:space-between;margin-bottom:48px}
+.logo{font-family:'DM Serif Display',serif;font-size:20px}.logo span{color:var(--purple)}
+.step-ind{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.prog-track{height:2px;background:var(--border);border-radius:2px;margin-bottom:56px}
+.prog-fill{height:2px;background:var(--purple);border-radius:2px;transition:width .5s;width:0%}
+.step{display:none}.step.active{display:block}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:10px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:28px;letter-spacing:-.3px;margin-bottom:6px;line-height:1.2}
+.sec-sub{font-size:15px;color:var(--muted);margin-bottom:36px;font-weight:300;line-height:1.6}
+.q-block{margin-bottom:28px}
+.q-num{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--purple);margin-bottom:6px;display:block}
+.q-text{font-size:16px;color:var(--accent);line-height:1.5;margin-bottom:10px;display:block}
+textarea{width:100%;min-height:90px;padding:14px 18px;border:1px solid var(--border);border-radius:12px;background:var(--input);font-family:'DM Sans',sans-serif;font-size:15px;color:var(--accent);resize:vertical;outline:none;transition:border-color .2s;line-height:1.6;font-weight:300}
+textarea:focus{border-color:var(--purple)}
+textarea::placeholder{color:#BCBAB4}
+input[type=text]{width:100%;padding:14px 18px;border:1px solid var(--border);border-radius:12px;background:var(--input);font-family:'DM Sans',sans-serif;font-size:16px;color:var(--accent);outline:none;transition:border-color .2s}
+input[type=text]:focus{border-color:var(--purple)}
+.nav-row{display:flex;align-items:center;justify-content:space-between;margin-top:40px;padding-top:28px;border-top:1px solid var(--border)}
+.btn-back{padding:12px 20px;border:1px solid var(--border);border-radius:10px;background:transparent;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--muted);cursor:pointer;transition:all .15s}
+.btn-back:hover{background:var(--surface)}
+.btn-primary{padding:13px 28px;border:none;border-radius:10px;background:var(--accent);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;color:#fff;cursor:pointer;transition:all .15s}
+.btn-primary:hover{background:#333}
+.btn-primary.purple{background:var(--purple)}.btn-primary.purple:hover{background:#7C3AED}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.intro-eye{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--purple);margin-bottom:16px}
+.intro-h{font-family:'DM Serif Display',serif;font-size:clamp(32px,5vw,48px);line-height:1.15;letter-spacing:-.5px;margin-bottom:20px}
+.intro-h em{font-style:italic;color:var(--purple)}
+.intro-b{font-size:16px;line-height:1.7;color:var(--muted);margin-bottom:32px;font-weight:300}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:40px}
+.chip{padding:5px 14px;border:1px solid var(--border);border-radius:100px;font-size:12px;color:var(--muted)}
+.name-wrap{margin-bottom:28px}
+.field-label{display:block;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.qf-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:36px}
+.qf-pair{border:1px solid var(--border);border-radius:12px;overflow:hidden;display:flex}
+.qf-btn{flex:1;padding:12px 8px;background:var(--input);border:none;font-family:'DM Sans',sans-serif;font-size:13px;color:var(--muted);cursor:pointer;transition:all .15s;text-align:center}
+.qf-btn:hover{background:#F0EEE8}
+.qf-btn.sel{background:var(--purple);color:#fff;font-weight:500}
+.qf-sep{width:1px;background:var(--border);flex-shrink:0}
+.done-wrap{text-align:center;padding:24px 0}
+.done-icon{width:64px;height:64px;border-radius:50%;background:#F3F0FF;display:flex;align-items:center;justify-content:center;margin:0 auto 24px}
+.done-title{font-family:'DM Serif Display',serif;font-size:30px;margin-bottom:12px;letter-spacing:-.3px}
+.done-sub{font-size:15px;color:var(--muted);line-height:1.6;font-weight:300;max-width:380px;margin:0 auto}
+.sending-msg{font-size:14px;color:var(--muted);text-align:center;margin-top:16px;min-height:20px}
+.error-msg{font-size:14px;color:#DC2626;text-align:center;margin-top:12px;display:none}
+@media(max-width:480px){.qf-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="page-wrap">
+<div class="wrap">
+<header class="header">
+  <div class="logo">Walli Grasse <span>·</span> Social Media</div>
+  <div class="step-ind" id="stepInd" style="display:none"></div>
+</header>
+<div class="prog-track" id="progTrack" style="display:none"><div class="prog-fill" id="progFill"></div></div>
 
-  <header class="site-header">
-    <div class="logo">Walli Grasse <span>·</span> Social Media</div>
-    <div class="step-indicator" id="stepIndicator" style="display:none"></div>
-  </header>
-
-  <div class="progress-track" id="progressTrack" style="display:none">
-    <div class="progress-fill" id="progressFill"></div>
-  </div>
-
-  <!-- INTRO -->
-  <div class="step active" id="step-intro">
-    <div class="intro-eyebrow">Onboarding Fragebogen</div>
-    <h1 class="intro-heading">Ich möchte dich als <em>Mensch</em> kennenlernen.</h1>
-    <p class="intro-body">Nicht nur als Kunden. Dieser Fragebogen hilft mir, dich, deine Geschichte und dein Potenzial wirklich zu verstehen — damit ich dir die bestmögliche Unterstützung geben kann.<br><br>Kein richtig oder falsch. Einfach ehrlich sein.</p>
-    <div class="meta-chips">
-      <span class="chip">10 Kategorien</span>
-      <span class="chip">ca. 15–20 Minuten</span>
-      <span class="chip">Antworten gehen direkt an mich</span>
-    </div>
-    <div class="name-field-wrap">
-      <label class="field-label" for="clientName">Dein Vorname</label>
-      <input type="text" id="clientName" placeholder="z.B. Maria" />
-    </div>
-    <button class="btn-primary purple" style="width:100%;padding:15px" id="startBtn">Fragebogen starten →</button>
-  </div>
-
-  <!-- STEP 0: Identität -->
-  <div class="step" id="step-0">
-    <div class="section-eyebrow">Kategorie 1 von 10</div>
-    <h2 class="section-heading">Identität & Positionierung</h2>
-    <p class="section-sub">Wer bist du wirklich — abseits von Job, Rollen und Erwartungen anderer?</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wer bist du – abseits von Job & Rollen?</span><textarea id="q0_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wofür stehst du, auch wenn niemand zuschaut?</span><textarea id="q0_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was sind 3 Dinge, die dich anders machen als andere in deiner Nische?</span><textarea id="q0_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Wenn jemand dich beschreiben müsste: Welche 3 Wörter wären es?</span><textarea id="q0_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Welche Version von dir zeigst du gerade – und welche hältst du zurück?</span><textarea id="q0_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><div></div><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 1: Stärken -->
-  <div class="step" id="step-1">
-    <div class="section-eyebrow">Kategorie 2 von 10</div>
-    <h2 class="section-heading">Stärken & Superpowers</h2>
-    <p class="section-sub">Was fällt dir leicht, während andere damit kämpfen?</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was fällt dir extrem leicht, während andere strugglen?</span><textarea id="q1_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wofür bekommst du immer wieder Komplimente?</span><textarea id="q1_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Probleme kannst du für andere schnell lösen?</span><textarea id="q1_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">In welchen Momenten fühlst du dich richtig in deiner Kraft?</span><textarea id="q1_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was würdest du auch tun, wenn du kein Geld dafür bekommst?</span><textarea id="q1_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 2: Blockaden -->
-  <div class="step" id="step-2">
-    <div class="section-eyebrow">Kategorie 3 von 10</div>
-    <h2 class="section-heading">Schwächen & Blockaden</h2>
-    <p class="section-sub">Ehrlichkeit ist hier dein größtes Asset. Was bremst dich wirklich aus?</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was schiebst du immer wieder auf – und warum?</span><textarea id="q2_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wo sabotierst du dich selbst?</span><textarea id="q2_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was hält dich aktuell davon ab, sichtbarer zu werden?</span><textarea id="q2_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Was brauchst du, damit du dich sicher genug fühlst, sichtbar zu werden?</span><textarea id="q2_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Welche Gedanken kommen, wenn du posten willst?</span><textarea id="q2_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 3: Zukunft -->
-  <div class="step" id="step-3">
-    <div class="section-eyebrow">Kategorie 4 von 10</div>
-    <h2 class="section-heading">Ziele & Zukunft</h2>
-    <p class="section-sub">Dein 5-Jahres-Bild — realistisch und ideal.</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wo stehst du in 5 Jahren – realistisch UND idealerweise?</span><textarea id="q3_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wie sieht ein perfekter Montag in 2 Jahren aus – von 7 bis 21 Uhr?</span><textarea id="q3_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Wie viel Geld verdienst du – und womit genau?</span><textarea id="q3_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Freiheit hast du (Zeit, Ort, Familie)?</span><textarea id="q3_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was muss passieren, damit du sagst: „Ich hab's geschafft"?</span><textarea id="q3_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 4: Angebot -->
-  <div class="step" id="step-4">
-    <div class="section-eyebrow">Kategorie 5 von 10</div>
-    <h2 class="section-heading">Angebot & Expertise</h2>
-    <p class="section-sub">Was kannst du — und was ist das wert für andere?</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wofür würdest du heute schon Geld verlangen können?</span><textarea id="q4_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welche Erfahrungen (auch privat!) sind wertvoll für andere?</span><textarea id="q4_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Transformation kannst du anderen bieten?</span><textarea id="q4_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Themen könntest du 10 Stunden am Stück erklären?</span><textarea id="q4_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Wo hast du bereits Ergebnisse erzielt – für dich oder andere?</span><textarea id="q4_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 5: Content -->
-  <div class="step" id="step-5">
-    <div class="section-eyebrow">Kategorie 6 von 10</div>
-    <h2 class="section-heading">Content & Sichtbarkeit</h2>
-    <p class="section-sub">Was postest du — und was hält dich noch zurück?</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Welche Inhalte würdest du posten, wenn niemand dich bewertet?</span><textarea id="q5_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Was hält dich aktuell vom Posten ab?</span><textarea id="q5_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Accounts inspirieren dich – und warum?</span><textarea id="q5_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Inhalte nerven dich komplett?</span><textarea id="q5_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was würdest du gerne sagen, traust dich aber nicht?</span><textarea id="q5_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 6: Trigger -->
-  <div class="step" id="step-6">
-    <div class="section-eyebrow">Kategorie 7 von 10</div>
-    <h2 class="section-heading">Emotionale Trigger</h2>
-    <p class="section-sub">Hier liegt dein virales Potenzial. Lass es raus.</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was macht dich richtig wütend in deiner Nische?</span><textarea id="q6_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welche Mythen würdest du gerne zerstören?</span><textarea id="q6_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was wird komplett falsch gemacht?</span><textarea id="q6_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Wahrheit traut sich keiner auszusprechen?</span><textarea id="q6_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Wo denkst du: „Das kann doch nicht sein…"?</span><textarea id="q6_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 7: Zielgruppe -->
-  <div class="step" id="step-7">
-    <div class="section-eyebrow">Kategorie 8 von 10</div>
-    <h2 class="section-heading">Zielgruppe</h2>
-    <p class="section-sub">Wem willst du helfen — und warum vertrauen sie dir?</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wem möchtest du helfen – so konkret wie möglich?</span><textarea id="q7_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">In welcher Situation steckt diese Person gerade?</span><textarea id="q7_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was sind ihre größten Probleme?</span><textarea id="q7_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Was wünscht sie sich insgeheim?</span><textarea id="q7_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Warum vertraut sie ausgerechnet dir?</span><textarea id="q7_5" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 8: Vergangenheit -->
-  <div class="step" id="step-8">
-    <div class="section-eyebrow">Kategorie 9 von 10</div>
-    <h2 class="section-heading">Deine Geschichte</h2>
-    <p class="section-sub">Deine Vergangenheit ist dein stärkstes Content-Asset — und dein Kaufverhalten verrät viel.</p>
-    <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was hast du in den letzten 5 Jahren gelernt, das du damals teuer bezahlt hättest?</span><textarea id="q8_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welcher Tiefpunkt hat dich am meisten geprägt?</span><textarea id="q8_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Wann hast du zuletzt etwas Teures gekauft – was hat den Ausschlag gegeben?</span><textarea id="q8_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Wem folgst du online – und warum vertraust du dieser Person?</span><textarea id="q8_4" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-next-step btn-primary">Weiter →</button></div>
-  </div>
-
-  <!-- STEP 9: Quickfire + Bonus -->
-  <div class="step" id="step-9">
-    <div class="section-eyebrow">Kategorie 10 von 10</div>
-    <h2 class="section-heading">Quickfire & Bonus</h2>
-    <p class="section-sub">Spontan, ungefiltert. Tippe auf das, was als erstes kommt.</p>
-    <div class="qf-grid">
-      <div class="qf-pair"><button class="qf-btn" data-pair="0" data-val="Introvertiert" >Introvertiert</button><div class="qf-sep"></div><button class="qf-btn" data-pair="0" data-val="Extrovertiert" >Extrovertiert</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="1" data-val="Sicherheit" >Sicherheit</button><div class="qf-sep"></div><button class="qf-btn" data-pair="1" data-val="Risiko" >Risiko</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="2" data-val="Struktur" >Struktur</button><div class="qf-sep"></div><button class="qf-btn" data-pair="2" data-val="Chaos" >Chaos</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="3" data-val="Perfektion" >Perfektion</button><div class="qf-sep"></div><button class="qf-btn" data-pair="3" data-val="Geschwindigkeit" >Geschwindigkeit</button></div>
-      <div class="qf-pair"><button class="qf-btn" data-pair="4" data-val="Denken" >Denken</button><div class="qf-sep"></div><button class="qf-btn" data-pair="4" data-val="Machen" >Machen</button></div>
-    </div>
-    <div class="q-block"><span class="q-num">Bonus 01</span><span class="q-text">Wenn dein Leben ein Film wäre – wie würde er heißen?</span><textarea id="q9_1" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Bonus 02</span><span class="q-text">Was wäre deine Message an die Welt?</span><textarea id="q9_2" placeholder="Deine Antwort..."></textarea></div>
-    <div class="q-block"><span class="q-num">Bonus 03</span><span class="q-text">Wofür willst du bekannt sein?</span><textarea id="q9_3" placeholder="Deine Antwort..."></textarea></div>
-    <div class="nav-row"><button class="btn-prev-step btn-back">← Zurück</button><button class="btn-primary purple" id="submitBtn">Absenden →</button></div>
-    <div class="sending-msg" id="sendingMsg"></div>
-    <div class="error-msg" id="errorMsg">Etwas ist schiefgelaufen. Bitte versuche es erneut oder schreib mir direkt: walligrasse@gmail.com</div>
-  </div>
-
-  <!-- DONE -->
-  <div class="step" id="step-done">
-    <div class="done-wrap">
-      <div class="done-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-      </div>
-      <h2 class="done-title">Vielen Dank!</h2>
-      <p class="done-sub">Deine Antworten sind bei mir angekommen. Ich melde mich bald bei dir — ich freue mich darauf, dich besser kennen zu lernen.</p>
-      <p style="margin-top:20px;font-size:13px;color:#BCBAB4">— Walli Grasse</p>
-    </div>
-  </div>
-
+<div class="step active" id="step-intro">
+  <div class="intro-eye">Onboarding Fragebogen</div>
+  <h1 class="intro-h">Ich moechte dich als <em>Mensch</em> kennenlernen.</h1>
+  <p class="intro-b">Nicht nur als Kunden. Dieser Fragebogen hilft mir, dich, deine Geschichte und dein Potenzial wirklich zu verstehen.<br><br>Kein richtig oder falsch. Einfach ehrlich sein.</p>
+  <div class="chips"><span class="chip">10 Kategorien</span><span class="chip">ca. 15-20 Minuten</span><span class="chip">Antworten gehen direkt an mich</span></div>
+  <div class="name-wrap"><label class="field-label" for="clientName">Dein Vorname</label><input type="text" id="clientName" placeholder="z.B. Maria" /></div>
+  <button class="btn-primary purple" id="startBtn" style="width:100%;padding:15px">Fragebogen starten</button>
 </div>
 
+<div class="step" id="step-0">
+  <div class="eyebrow">Kategorie 1 von 10</div>
+  <h2 class="sec-title">Identitaet &amp; Positionierung</h2>
+  <p class="sec-sub">Wer bist du wirklich - abseits von Job, Rollen und Erwartungen anderer?</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wer bist du - abseits von Job &amp; Rollen?</span><textarea id="q0_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wofuer stehst du, auch wenn niemand zuschaut?</span><textarea id="q0_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was sind 3 Dinge, die dich anders machen als andere in deiner Nische?</span><textarea id="q0_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Wenn jemand dich beschreiben muesste: Welche 3 Woerter waeren es?</span><textarea id="q0_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Welche Version von dir zeigst du gerade - und welche haeltst du zurueck?</span><textarea id="q0_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><div></div><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-1">
+  <div class="eyebrow">Kategorie 2 von 10</div>
+  <h2 class="sec-title">Staerken &amp; Superpowers</h2>
+  <p class="sec-sub">Was faellt dir leicht, waehrend andere damit kaempfen?</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was faellt dir extrem leicht, waehrend andere strugglen?</span><textarea id="q1_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wofuer bekommst du immer wieder Komplimente?</span><textarea id="q1_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Probleme kannst du fuer andere schnell loesen?</span><textarea id="q1_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">In welchen Momenten fuehlst du dich richtig in deiner Kraft?</span><textarea id="q1_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was wuerdest du auch tun, wenn du kein Geld dafuer bekommst?</span><textarea id="q1_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-2">
+  <div class="eyebrow">Kategorie 3 von 10</div>
+  <h2 class="sec-title">Schwaechen &amp; Blockaden</h2>
+  <p class="sec-sub">Ehrlichkeit ist hier dein groesstes Asset.</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was schiebst du immer wieder auf - und warum?</span><textarea id="q2_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wo sabotierst du dich selbst?</span><textarea id="q2_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was haelt dich aktuell davon ab, sichtbarer zu werden?</span><textarea id="q2_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Was brauchst du, damit du dich sicher genug fuehlst, sichtbar zu werden?</span><textarea id="q2_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Welche Gedanken kommen, wenn du posten willst?</span><textarea id="q2_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-3">
+  <div class="eyebrow">Kategorie 4 von 10</div>
+  <h2 class="sec-title">Ziele &amp; Zukunft</h2>
+  <p class="sec-sub">Dein 5-Jahres-Bild - realistisch und ideal.</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wo stehst du in 5 Jahren - realistisch UND idealerweise?</span><textarea id="q3_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Wie sieht ein perfekter Montag in 2 Jahren aus - von 7 bis 21 Uhr?</span><textarea id="q3_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Wie viel Geld verdienst du - und womit genau?</span><textarea id="q3_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Freiheit hast du (Zeit, Ort, Familie)?</span><textarea id="q3_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was muss passieren, damit du sagst: Ich habs geschafft?</span><textarea id="q3_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-4">
+  <div class="eyebrow">Kategorie 5 von 10</div>
+  <h2 class="sec-title">Angebot &amp; Expertise</h2>
+  <p class="sec-sub">Was kannst du - und was ist das wert fuer andere?</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wofuer wuerdest du heute schon Geld verlangen koennen?</span><textarea id="q4_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welche Erfahrungen (auch privat!) sind wertvoll fuer andere?</span><textarea id="q4_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Transformation kannst du anderen bieten?</span><textarea id="q4_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Themen koenntest du 10 Stunden am Stueck erklaeren?</span><textarea id="q4_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Wo hast du bereits Ergebnisse erzielt - fuer dich oder andere?</span><textarea id="q4_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-5">
+  <div class="eyebrow">Kategorie 6 von 10</div>
+  <h2 class="sec-title">Content &amp; Sichtbarkeit</h2>
+  <p class="sec-sub">Was postest du - und was haelt dich noch zurueck?</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Welche Inhalte wuerdest du posten, wenn niemand dich bewertet?</span><textarea id="q5_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Was haelt dich aktuell vom Posten ab?</span><textarea id="q5_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Welche Accounts inspirieren dich - und warum?</span><textarea id="q5_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Inhalte nerven dich komplett?</span><textarea id="q5_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Was wuerdest du gerne sagen, traust dich aber nicht?</span><textarea id="q5_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-6">
+  <div class="eyebrow">Kategorie 7 von 10</div>
+  <h2 class="sec-title">Emotionale Trigger</h2>
+  <p class="sec-sub">Hier liegt dein virales Potenzial. Lass es raus.</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was macht dich richtig wuetend in deiner Nische?</span><textarea id="q6_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welche Mythen wuerdest du gerne zerstoeren?</span><textarea id="q6_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was wird komplett falsch gemacht?</span><textarea id="q6_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Welche Wahrheit traut sich keiner auszusprechen?</span><textarea id="q6_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Wo denkst du: Das kann doch nicht sein?</span><textarea id="q6_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-7">
+  <div class="eyebrow">Kategorie 8 von 10</div>
+  <h2 class="sec-title">Zielgruppe</h2>
+  <p class="sec-sub">Wem willst du helfen - und warum vertrauen sie dir?</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Wem moechtest du helfen - so konkret wie moeglich?</span><textarea id="q7_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">In welcher Situation steckt diese Person gerade?</span><textarea id="q7_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Was sind ihre groessten Probleme?</span><textarea id="q7_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Was wuenscht sie sich insgeheim?</span><textarea id="q7_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 05</span><span class="q-text">Warum vertraut sie ausgerechnet dir?</span><textarea id="q7_5" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-8">
+  <div class="eyebrow">Kategorie 9 von 10</div>
+  <h2 class="sec-title">Deine Geschichte</h2>
+  <p class="sec-sub">Deine Vergangenheit ist dein staerkstes Content-Asset.</p>
+  <div class="q-block"><span class="q-num">Frage 01</span><span class="q-text">Was hast du in den letzten 5 Jahren gelernt, das du damals teuer bezahlt haettest?</span><textarea id="q8_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 02</span><span class="q-text">Welcher Tiefpunkt hat dich am meisten gepraegt?</span><textarea id="q8_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 03</span><span class="q-text">Wann hast du zuletzt etwas Teures gekauft - was hat den Ausschlag gegeben?</span><textarea id="q8_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Frage 04</span><span class="q-text">Wem folgst du online - und warum vertraust du dieser Person?</span><textarea id="q8_4" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary btn-next">Weiter</button></div>
+</div>
+
+<div class="step" id="step-9">
+  <div class="eyebrow">Kategorie 10 von 10</div>
+  <h2 class="sec-title">Quickfire &amp; Bonus</h2>
+  <p class="sec-sub">Spontan, ungefiltert. Tippe auf das, was als erstes kommt.</p>
+  <div class="qf-grid">
+    <div class="qf-pair"><button class="qf-btn" data-pair="0" data-val="Introvertiert">Introvertiert</button><div class="qf-sep"></div><button class="qf-btn" data-pair="0" data-val="Extrovertiert">Extrovertiert</button></div>
+    <div class="qf-pair"><button class="qf-btn" data-pair="1" data-val="Sicherheit">Sicherheit</button><div class="qf-sep"></div><button class="qf-btn" data-pair="1" data-val="Risiko">Risiko</button></div>
+    <div class="qf-pair"><button class="qf-btn" data-pair="2" data-val="Struktur">Struktur</button><div class="qf-sep"></div><button class="qf-btn" data-pair="2" data-val="Chaos">Chaos</button></div>
+    <div class="qf-pair"><button class="qf-btn" data-pair="3" data-val="Perfektion">Perfektion</button><div class="qf-sep"></div><button class="qf-btn" data-pair="3" data-val="Geschwindigkeit">Geschwindigkeit</button></div>
+    <div class="qf-pair"><button class="qf-btn" data-pair="4" data-val="Denken">Denken</button><div class="qf-sep"></div><button class="qf-btn" data-pair="4" data-val="Machen">Machen</button></div>
+  </div>
+  <div class="q-block"><span class="q-num">Bonus 01</span><span class="q-text">Wenn dein Leben ein Film waere - wie wuerde er heissen?</span><textarea id="q9_1" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Bonus 02</span><span class="q-text">Was waere deine Message an die Welt?</span><textarea id="q9_2" placeholder="Deine Antwort..."></textarea></div>
+  <div class="q-block"><span class="q-num">Bonus 03</span><span class="q-text">Wofuer willst du bekannt sein?</span><textarea id="q9_3" placeholder="Deine Antwort..."></textarea></div>
+  <div class="nav-row"><button class="btn-back btn-prev">Zurueck</button><button class="btn-primary purple" id="submitBtn">Absenden</button></div>
+  <div class="sending-msg" id="sendingMsg"></div>
+  <div class="error-msg" id="errorMsg">Etwas ist schiefgelaufen. Schreib mir direkt: walligrasse@gmail.com</div>
+</div>
+
+<div class="step" id="step-done">
+  <div class="done-wrap">
+    <div class="done-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+    <h2 class="done-title">Vielen Dank!</h2>
+    <p class="done-sub">Deine Antworten sind bei mir angekommen. Ich melde mich bald bei dir.</p>
+    <p style="margin-top:20px;font-size:13px;color:#BCBAB4">- Walli Grasse</p>
+  </div>
+</div>
+
+</div>
 <script>
-const qfAnswers = {};
-let currentStep = -1;
-const totalSteps = 10;
-
-const sectionLabels = [
-  "Identität & Positionierung",
-  "Stärken & Superpowers",
-  "Schwächen & Blockaden",
-  "Ziele & Zukunft",
-  "Angebot & Expertise",
-  "Content & Sichtbarkeit",
-  "Emotionale Trigger",
-  "Zielgruppe",
-  "Deine Geschichte",
-  "Quickfire & Bonus"
-];
-
-function startForm() {
-  document.getElementById("step-intro").classList.remove("active");
-  document.getElementById("progressTrack").style.display = "block";
-  document.getElementById("stepIndicator").style.display = "block";
-  currentStep = 0;
-  showStep(0);
-}
+var qfAnswers = {};
+var currentStep = -1;
+var totalSteps = 10;
+var labels = ["Identitaet","Staerken","Blockaden","Ziele","Angebot","Content","Trigger","Zielgruppe","Geschichte","Quickfire"];
 
 function showStep(n) {
-  document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
-  document.getElementById("step-" + n).classList.add("active");
-  const pct = Math.round((n / totalSteps) * 100);
-  document.getElementById("progressFill").style.width = pct + "%";
-  document.getElementById("stepIndicator").textContent = (n + 1) + " / " + totalSteps + " — " + sectionLabels[n];
-  window.scrollTo({top: 0, behavior: "smooth"});
+  var steps = document.querySelectorAll('.step');
+  for (var i = 0; i < steps.length; i++) steps[i].classList.remove('active');
+  var el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+  var pct = Math.round((n / totalSteps) * 100);
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('stepInd').textContent = (n+1) + ' / ' + totalSteps + ' - ' + labels[n];
+  window.scrollTo(0, 0);
+}
+
+function startForm() {
+  document.getElementById('step-intro').classList.remove('active');
+  document.getElementById('progTrack').style.display = 'block';
+  document.getElementById('stepInd').style.display = 'block';
+  currentStep = 0;
+  showStep(0);
 }
 
 function nextStep() {
@@ -558,226 +243,79 @@ function prevStep() {
   if (currentStep > 0) { currentStep--; showStep(currentStep); }
 }
 
-function selectQF(btn) {
-  const pair = btn.dataset.pair;
-  document.querySelectorAll("[data-pair='" + pair + "']").forEach(b => b.classList.remove("sel"));
-  btn.classList.add("sel");
-  qfAnswers[pair] = btn.dataset.val;
-}
-
 function val(id) {
-  const el = document.getElementById(id);
-  return el ? (el.value.trim() || "—") : "—";
+  var el = document.getElementById(id);
+  return el ? (el.value.trim() || '-') : '-';
 }
 
 function submitForm() {
-  const name = document.getElementById("clientName").value.trim() || "Unbekannt";
-  const btn = document.getElementById("submitBtn");
+  var name = document.getElementById('clientName').value.trim() || 'Unbekannt';
+  var btn = document.getElementById('submitBtn');
   btn.disabled = true;
-  btn.textContent = "Wird gesendet...";
-  document.getElementById("sendingMsg").textContent = "Deine Antworten werden übermittelt…";
+  btn.textContent = 'Wird gesendet...';
+  document.getElementById('sendingMsg').textContent = 'Deine Antworten werden uebermittelt...';
 
-  const qfLabels = ["Introvertiert vs. Extrovertiert","Sicherheit vs. Risiko","Struktur vs. Chaos","Perfektion vs. Geschwindigkeit","Denken vs. Machen"];
+  var qfLabels = ['Introvertiert vs Extrovertiert','Sicherheit vs Risiko','Struktur vs Chaos','Perfektion vs Geschwindigkeit','Denken vs Machen'];
+  var msg = 'KUNDENPROFIL: ' + name + '\nDatum: ' + new Date().toLocaleDateString('de-DE') + '\n\n';
+  var secs = [
+    {t:'IDENTITAET',ids:['q0_1','q0_2','q0_3','q0_4','q0_5']},
+    {t:'STAERKEN',ids:['q1_1','q1_2','q1_3','q1_4','q1_5']},
+    {t:'BLOCKADEN',ids:['q2_1','q2_2','q2_3','q2_4','q2_5']},
+    {t:'ZIELE',ids:['q3_1','q3_2','q3_3','q3_4','q3_5']},
+    {t:'ANGEBOT',ids:['q4_1','q4_2','q4_3','q4_4','q4_5']},
+    {t:'CONTENT',ids:['q5_1','q5_2','q5_3','q5_4','q5_5']},
+    {t:'TRIGGER',ids:['q6_1','q6_2','q6_3','q6_4','q6_5']},
+    {t:'ZIELGRUPPE',ids:['q7_1','q7_2','q7_3','q7_4','q7_5']},
+    {t:'GESCHICHTE',ids:['q8_1','q8_2','q8_3','q8_4']}
+  ];
+  for (var s = 0; s < secs.length; s++) {
+    msg += '=== ' + secs[s].t + ' ===\n';
+    for (var q = 0; q < secs[s].ids.length; q++) msg += (q+1) + '. ' + val(secs[s].ids[q]) + '\n';
+    msg += '\n';
+  }
+  msg += '=== QUICKFIRE ===\n';
+  for (var i = 0; i < 5; i++) msg += qfLabels[i] + ': ' + (qfAnswers[i] || 'keine Angabe') + '\n';
+  msg += '\n=== BONUS ===\nFilm: ' + val('q9_1') + '\nMessage: ' + val('q9_2') + '\nBekannt fuer: ' + val('q9_3');
 
-  const message = `
-KUNDENPROFIL: ${name.toUpperCase()}
-Datum: ${new Date().toLocaleDateString("de-DE")}
+  var fd = new FormData();
+  fd.append('_subject', 'Neues Kundenprofil: ' + name);
+  fd.append('name', name);
+  fd.append('message', msg);
 
-═══════════════════════════════════════
-IDENTITÄT & POSITIONIERUNG
-═══════════════════════════════════════
-1. Wer bist du – abseits von Job & Rollen?
-${val("q0_1")}
-
-2. Wofür stehst du, auch wenn niemand zuschaut?
-${val("q0_2")}
-
-3. Was macht dich anders als andere in deiner Nische?
-${val("q0_3")}
-
-4. Welche 3 Wörter würden andere für dich wählen?
-${val("q0_4")}
-
-5. Welche Version zeigst du – welche hältst du zurück?
-${val("q0_5")}
-
-═══════════════════════════════════════
-STÄRKEN & SUPERPOWERS
-═══════════════════════════════════════
-1. Was fällt dir extrem leicht?
-${val("q1_1")}
-
-2. Wofür bekommst du immer wieder Komplimente?
-${val("q1_2")}
-
-3. Welche Probleme löst du schnell für andere?
-${val("q1_3")}
-
-4. Wann bist du richtig in deiner Kraft?
-${val("q1_4")}
-
-5. Was würdest du auch ohne Bezahlung tun?
-${val("q1_5")}
-
-═══════════════════════════════════════
-SCHWÄCHEN & BLOCKADEN
-═══════════════════════════════════════
-1. Was schiebst du immer wieder auf?
-${val("q2_1")}
-
-2. Wo sabotierst du dich selbst?
-${val("q2_2")}
-
-3. Was hält dich davon ab, sichtbarer zu werden?
-${val("q2_3")}
-
-4. Was brauchst du, um dich sicher zu fühlen?
-${val("q2_4")}
-
-5. Welche Gedanken kommen beim Posten?
-${val("q2_5")}
-
-═══════════════════════════════════════
-ZIELE & ZUKUNFT
-═══════════════════════════════════════
-1. Wo stehst du in 5 Jahren?
-${val("q3_1")}
-
-2. Wie sieht ein perfekter Montag in 2 Jahren aus?
-${val("q3_2")}
-
-3. Wie viel Geld verdienst du – womit?
-${val("q3_3")}
-
-4. Welche Freiheit hast du (Zeit, Ort, Familie)?
-${val("q3_4")}
-
-5. Was bedeutet für dich „Ich hab's geschafft"?
-${val("q3_5")}
-
-═══════════════════════════════════════
-ANGEBOT & EXPERTISE
-═══════════════════════════════════════
-1. Wofür könntest du heute schon Geld verlangen?
-${val("q4_1")}
-
-2. Welche Erfahrungen sind wertvoll für andere?
-${val("q4_2")}
-
-3. Welche Transformation bietest du?
-${val("q4_3")}
-
-4. Welche Themen könntest du 10h erklären?
-${val("q4_4")}
-
-5. Wo hast du bereits Ergebnisse erzielt?
-${val("q4_5")}
-
-═══════════════════════════════════════
-CONTENT & SICHTBARKEIT
-═══════════════════════════════════════
-1. Was postest du ohne Bewertungsdruck?
-${val("q5_1")}
-
-2. Was hält dich vom Posten ab?
-${val("q5_2")}
-
-3. Welche Accounts inspirieren dich – warum?
-${val("q5_3")}
-
-4. Welche Inhalte nerven dich komplett?
-${val("q5_4")}
-
-5. Was sagst du dir, dich nicht zu sagen?
-${val("q5_5")}
-
-═══════════════════════════════════════
-EMOTIONALE TRIGGER
-═══════════════════════════════════════
-1. Was macht dich wütend in deiner Nische?
-${val("q6_1")}
-
-2. Welche Mythen willst du zerstören?
-${val("q6_2")}
-
-3. Was wird komplett falsch gemacht?
-${val("q6_3")}
-
-4. Welche Wahrheit sagt sich keiner?
-${val("q6_4")}
-
-5. Wo denkst du: „Das kann doch nicht sein"?
-${val("q6_5")}
-
-═══════════════════════════════════════
-ZIELGRUPPE
-═══════════════════════════════════════
-1. Wem möchtest du helfen?
-${val("q7_1")}
-
-2. In welcher Situation steckt diese Person?
-${val("q7_2")}
-
-3. Was sind ihre größten Probleme?
-${val("q7_3")}
-
-4. Was wünscht sie sich insgeheim?
-${val("q7_4")}
-
-5. Warum vertraut sie dir?
-${val("q7_5")}
-
-═══════════════════════════════════════
-DEINE GESCHICHTE & KAUFPSYCHOLOGIE
-═══════════════════════════════════════
-1. Was hast du gelernt, das du damals bezahlt hättest?
-${val("q8_1")}
-
-2. Welcher Tiefpunkt hat dich am meisten geprägt?
-${val("q8_2")}
-
-3. Wann hast du zuletzt etwas Teures gekauft – warum?
-${val("q8_3")}
-
-4. Wem folgst du online – und warum vertraust du?
-${val("q8_4")}
-
-═══════════════════════════════════════
-QUICKFIRE
-═══════════════════════════════════════
-${qfLabels.map((l,i) => l + ": " + (qfAnswers[i] || "nicht beantwortet")).join("\n")}
-
-═══════════════════════════════════════
-BONUS
-═══════════════════════════════════════
-Film-Titel: ${val("q9_1")}
-Message an die Welt: ${val("q9_2")}
-Wofür bekannt sein: ${val("q9_3")}
-`.trim();
-
-  // Formspree submission
-  // WICHTIG: Ersetze mwvrjgev mit deiner echten Formspree Form-ID
-  // Kostenlos registrieren auf formspree.io → neues Formular erstellen → ID kopieren
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mwvrjgev";
-
-  const formData = new FormData();
-  formData.append("_subject", "Neues Kundenprofil: " + name);
-  formData.append("name", name);
-  formData.append("message", message);
-
-  fetch(FORMSPREE_ENDPOINT, {
-    method: "POST",
-    headers: { "Accept": "application/json" },
-    body: formData
+  fetch('https://formspree.io/f/mwvrjgev', {method:'POST', headers:{Accept:'application/json'}, body: fd})
+  .then(function(r) {
+    if (r.ok) {
+      var steps = document.querySelectorAll('.step');
+      for (var i = 0; i < steps.length; i++) steps[i].classList.remove('active');
+      document.getElementById('step-done').classList.add('active');
+      document.getElementById('progFill').style.width = '100%';
+      document.getElementById('stepInd').textContent = 'Fertig';
+    } else { throw new Error('fail'); }
   })
-  .then(res => {
-    if (res.ok) {
-      document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
-      document.getElementById("step-done").classList.add("active");
-      document.getElementById("progressFill").style.width = "100%";
-      document.getElementById("stepIndicator").textContent = "Abgeschlossen";
-    } else {
-      throw new Error("Fehler beim Senden");
+  .catch(function() {
+    btn.disabled = false;
+    btn.textContent = 'Erneut versuchen';
+    document.getElementById('sendingMsg').textContent = '';
+    document.getElementById('errorMsg').style.display = 'block';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('startBtn').addEventListener('click', startForm);
+
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('btn-next')) nextStep();
+    if (e.target.classList.contains('btn-prev')) prevStep();
+    if (e.target.id === 'submitBtn') submitForm();
+    if (e.target.classList.contains('qf-btn')) {
+      var pair = e.target.getAttribute('data-pair');
+      var btns = document.querySelectorAll('[data-pair="' + pair + '"]');
+      for (var i = 0; i < btns.length; i++) btns[i].classList.remove('sel');
+      e.target.classList.add('sel');
+      qfAnswers[pair] = e.target.getAttribute('data-val');
     }
-  })
-  .catch(() => {
+  });
+});
+</script>
+</body>
+</html>
